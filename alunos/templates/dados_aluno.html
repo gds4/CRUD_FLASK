@@ -1,19 +1,56 @@
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista de Alunos</title>
+          <style>
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-bottom: 20px;
+            }
+
+            th, td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+            }
+
+            th {
+              background-color: #f2f2f2;
+            }
+          </style>
+    </head>
     <body>
-        <h1></h1>
-        <ul>
+        <h2>Cadastros encontrados:</h2>
+        <table>
+            <tr>
+                <th>Matricula</th>
+                <th>Nome</th>
+                <th>Sexo</th>
+                <th>Data de Nascimento</th>
+                <th>CPF</th>
+                <th>Opção</th>
+            </tr>
             {% for a in alunos %}
                 {% if a.Cpf == cpf %}
-                    <li>{{a.Matricula}} {{a.Nome}} {{a.Sexo}} {{a.Data_de_Nascimento}} {{a.Cpf}} - 
-                        <a href="/aluno/atualizar/{{a.id}}">
-                            <button>Editar</button>
-                        </a>
-                        <a href="/aluno/excluir/{{a.id}}">
-                            <button>Excluir</button>
-                        </a>
-                    </li>
+                   <tr>
+                       <td>{{a.Matricula}}</td>
+                       <td>{{a.Nome}}</td>
+                       <td>{{a.Sexo}}</td>
+                       <td>{{a.Data_de_Nascimento}}</td>
+                       <td>{{a.Cpf}}</td>
+                       <td><a href="/aluno/atualizar/{{a.id}}">
+                        <button>Editar</button>
+                    </a>  
+                    <a href="/aluno/excluir/{{a.id}}">
+                        <button>Excluir</button>
+                    </a></td>
+                   </tr>
+                    
+
                 {% endif %}
             {% endfor %}
-        </ul>
+        
     </body>
 </html>
