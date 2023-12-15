@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <h1></h1>
+        <ul>
+            {% for a in alunos %}
+                {% if a.Cpf == cpf %}
+                    <li>{{a.Matricula}} {{a.Nome}} {{a.Sexo}} {{a.Data_de_Nascimento}} {{a.Cpf}} - 
+                        <a href="/aluno/atualizar/{{a.id}}">
+                            <button>Editar</button>
+                        </a>
+                        <a href="/aluno/excluir/{{a.id}}">
+                            <button>Excluir</button>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </body>
+</html>

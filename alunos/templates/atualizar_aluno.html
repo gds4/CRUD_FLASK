@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <form method='post' action='/aluno/atualizar/{{a.id}}' >
+            Nome: <input type="text" name="nome" value='{{a.Nome}}'><br>
+            Sexo [M/F]: <input type="text" name="sexo" value='{{a.Sexo}}'><br>
+            CPF: <input type="text" name="cpf" value='{{a.Cpf}}'><br>
+            Data de Nascimento: <input type="text" name="nascimento" value='{{a.Data_de_Nascimento}}'><br>
+            Matrícula: <input type="text" name="matricula"  value='{{a.Matricula}}'><br>
+            <input type="submit" value="Atualizar">
+        </form>
+    </body>
+</html>

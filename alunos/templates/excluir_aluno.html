@@ -1,0 +1,9 @@
+<html>
+    <body>
+        Você tem certeza que deseja excluir o aluno: {{a.Nome}}?
+        <form method='post' action= '/aluno/excluir/{{a.id}}'>
+            <input type='submit' value='Sim'>
+        </form>
+        <a href='/aluno/listar'>Cancelar</a>
+    </body>
+</html>
