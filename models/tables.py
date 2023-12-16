@@ -7,7 +7,7 @@ class Aluno(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     Nome = db.Column(db.String(100))
     Sexo = db.Column(db.String(100))
-    Cpf = db.Column(db.String(100))
+    Cpf = db.Column(db.String(20))
     Data_de_Nascimento = db.Column(db.String(100))
     Matricula = db.Column(db.String(100))
 

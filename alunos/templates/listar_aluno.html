@@ -1,4 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='estilos.css') }}">
+
+    </head>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +32,7 @@
         <h1>Lista de Alunos</h1>
         <table>
             <tr>
+                <th>id</th>
                 <th>Matricula</th>
                 <th>Nome</th>
                 <th>Sexo</th>
@@ -33,6 +41,7 @@
             </tr>
             {% for a in alunos %}
                 <tr>
+                    <td>{{a.id}}</td>
                     <td>{{a.Matricula}}</td>
                     <td>{{a.Nome}}</td>
                     <td>{{a.Sexo}}</td>

@@ -1,9 +1,9 @@
 import verificacao
 
-from flask.helpers import redirect
-from models import Aluno
+
+from models.tables import Aluno
 from database import db
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template,redirect, request, url_for
 
 
 
@@ -36,6 +36,9 @@ def inserir_aluno():
         if not verificacao.verificar_valor(Matricula):
             return "Matrícula Inválida!"
 
+        if verificacao.existe_aluno(Cpf):
+            return "O aluno já está cadastrado no sistema"
+
         
         u = Aluno(Nome, Sexo, Cpf, Data_de_Nascimento,Matricula)
         db.session.add(u)
@@ -63,6 +66,19 @@ def atualizar_aluno(id):
         Data_de_Nascimento = request.form.get('nascimento')
         Matricula = request.form.get('matricula')
 
+        if not verificacao.verificar_cpf(Cpf):
+            return "Cpf Inválido!"
+
+        if not verificacao.verificar_dataNasc(Data_de_Nascimento):
+            return "Data de nascimento Inválida!"
+
+        if not verificacao.verificar_sexo(Sexo):
+            return "Sexo Inválido!"
+
+        if not verificacao.verificar_valor(Matricula):
+            return "Matrícula Inválida!"
+
+            
         a.Nome = Nome
         a.Sexo = Sexo
         a.Cpf = Cpf
@@ -87,19 +103,28 @@ def excluir_aluno(id):
         return 'Dados excluidos com sucesso!'
 
 
+
 @aluno_blueprint.route('/buscador', methods = ['GET', 'POST'])
 def buscar_aluno():
-    alunos = Aluno.query.all()
     if request.method == 'GET':
         return render_template('buscar_aluno.html')
-    if request.method == 'POST':
-        cpf = request.form.get("cpf")
-        
-        for aluno in alunos:
-            if aluno.Cpf == cpf:
-                return render_template('dados_aluno.html', alunos=alunos, cpf=cpf)
     
+    if request.method == 'POST':
+        cpf = request.form.get('cpf')
+        aluno = verificacao.existe_aluno(cpf)
+
+        if aluno:
+
+            return redirect(url_for('alunos.exibir_aluno', id = aluno.id))
+
+        else:
+            return "Aluno nao encontrado!"
+
+@aluno_blueprint.route('/buscador/<int:id>',methods = ['GET'])
+def exibir_aluno(id):
+    aluno = Aluno.query.get(id)
+
+    return render_template('dados_aluno.html', aluno=aluno)
 
 
-        
-        
+

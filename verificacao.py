@@ -1,5 +1,7 @@
 from datetime import date
 
+from models.tables import Aluno
+
 
 def verificar_valor(valor):
     if valor.isdigit() is True:
@@ -124,3 +126,11 @@ def verificar_cpf(cpf):
         return False
 
     return True
+
+def existe_aluno(cpf):
+    aluno = Aluno.query.filter(Aluno.Cpf == cpf).first()
+
+    if aluno:
+        return aluno
+    else:
+        return None

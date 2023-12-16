@@ -1,25 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lista de Alunos</title>
-          <style>
-            table {
-              width: 100%;
-              border-collapse: collapse;
-              margin-bottom: 20px;
-            }
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='estilos.css') }}">
 
-            th, td {
-              border: 1px solid #ddd;
-              padding: 8px;
-              text-align: left;
-            }
-
-            th {
-              background-color: #f2f2f2;
-            }
-          </style>
     </head>
     <body>
         <h2>Cadastros encontrados:</h2>
@@ -32,25 +17,21 @@
                 <th>CPF</th>
                 <th>Opção</th>
             </tr>
-            {% for a in alunos %}
-                {% if a.Cpf == cpf %}
-                   <tr>
-                       <td>{{a.Matricula}}</td>
-                       <td>{{a.Nome}}</td>
-                       <td>{{a.Sexo}}</td>
-                       <td>{{a.Data_de_Nascimento}}</td>
-                       <td>{{a.Cpf}}</td>
-                       <td><a href="/aluno/atualizar/{{a.id}}">
-                        <button>Editar</button>
-                    </a>  
-                    <a href="/aluno/excluir/{{a.id}}">
-                        <button>Excluir</button>
-                    </a></td>
-                   </tr>
-                    
+          
+           <tr>
+               <td>{{aluno.Matricula}}</td>
+               <td>{{aluno.Nome}}</td>
+               <td>{{aluno.Sexo}}</td>
+               <td>{{aluno.Data_de_Nascimento}}</td>
+               <td>{{aluno.Cpf}}</td>
+               <td><a href="/aluno/atualizar/{{aluno.id}}">
+                <button>Editar</button>
+            </a>  
+            <a href="/aluno/excluir/{{aluno.id}}">
+                <button>Excluir</button>
+            </a></td>
+           </tr>
 
-                {% endif %}
-            {% endfor %}
         
     </body>
 </html>
