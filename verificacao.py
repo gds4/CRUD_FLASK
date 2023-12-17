@@ -134,3 +134,11 @@ def existe_aluno(cpf):
         return aluno
     else:
         return None
+
+def existe_matricula(matricula):
+    aluno = Aluno.query.filter(Aluno.Matricula == matricula).first()
+
+    if aluno:
+        return aluno
+    else:
+        return None

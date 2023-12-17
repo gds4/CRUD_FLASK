@@ -38,6 +38,9 @@ def inserir_aluno():
 
         if verificacao.existe_aluno(Cpf):
             return "O aluno já está cadastrado no sistema"
+            
+        if verificacao.existe_matricula(Matricula):
+            return "A matrícula fornecida, pertence a outro aluno"
 
         
         u = Aluno(Nome, Sexo, Cpf, Data_de_Nascimento,Matricula)
