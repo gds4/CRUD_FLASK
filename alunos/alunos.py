@@ -1,6 +1,5 @@
 import verificacao
 
-
 from models.tables import Aluno
 from database import db
 from flask import Blueprint, render_template,redirect, request, url_for
